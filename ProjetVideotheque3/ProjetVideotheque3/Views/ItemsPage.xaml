@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProjetVideotheque3.Views.ItemsPage"
+             Title="{Binding Title}"
+             xmlns:local="clr-namespace:ProjetVideotheque3.ViewModels"  
+             xmlns:model="clr-namespace:ProjetVideotheque3.Models"  
+             x:Name="BrowseItemsPage" BackgroundColor="Black">
+            
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Nouveau film" Command="{Binding AddItemCommand}" />
+    </ContentPage.ToolbarItems>
+    <!--
+      x:DataType enables compiled bindings for better performance and compile time validation of binding expressions.
+      https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/data-binding/compiled-bindings
+    -->
+    <ScrollView>
+    <RefreshView x:DataType="local:ItemsViewModel" Command="{Binding LoadItemsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+        <CollectionView x:Name="ItemsListView"
+                ItemsSource="{Binding Items}"
+                SelectionMode="None">
+            
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+
+                    <Grid x:DataType="model:Film">
+
+
+                        <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="4*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        
+                        <Image Grid.Column="0" Grid.RowSpan="1" Margin="5" WidthRequest="30" Aspect="AspectFit" Source="{Binding Affiche}" />
+
+                        <StackLayout Grid.Column="1" Grid.Row="0" Padding="10"   >
+
+
+                            <Label Grid.RowSpan="3" Text="{Binding Titre}" 
+                            LineBreakMode="NoWrap" 
+                            Style="{DynamicResource ListItemTextStyle}" 
+                            FontSize="16" />
+                        
+                        <Label Text="{Binding Synopsis}" 
+                            LineBreakMode="NoWrap"
+                            Style="{DynamicResource ListItemDetailTextStyle}"
+                            FontSize="13" />
+                        
+
+
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer 
+                                NumberOfTapsRequired="1"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type local:ItemsViewModel}}, Path=ItemTapped}"		
+                                CommandParameter="{Binding .}">
+                            </TapGestureRecognizer>
+                        </StackLayout.GestureRecognizers>
+                        
+                    </StackLayout>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </RefreshView>
+    </ScrollView>
+</ContentPage>

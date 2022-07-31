@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProjetVideotheque3.Views.ItemDetailPage"
+             Title="{Binding Title}" BackgroundColor="Black">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Modifier" Command="{Binding EditItemCommand}" />
+        <ToolbarItem Text="Supprimer" Command="{Binding DeleteItemCommand}" />
+    </ContentPage.ToolbarItems>
+
+    <ScrollView >
+        <StackLayout Spacing="20" Padding="15">
+            <Image Source="{Binding Affiche}" />
+
+
+            <Label Text="Titre :" FontSize="Medium" />
+            <Label Text="{Binding Titre}" FontSize="Small"/>
+            <Label Text="Synopsis :" FontSize="Medium" />
+            <Label Text="{Binding Synopsis}" FontSize="Small"/>
+            <Label Text="Durée (min.) :" FontSize="Medium" />
+            <Label Text="{Binding Duree}" FontSize="Small"/>
+            <Label Text="Date de sortie :" FontSize="Medium" />
+            <Label Text="{Binding DateSortie, StringFormat='{0:dd.MM.yy}' }" FontSize="Small"/>
+            <Label Text="Note :" FontSize="Medium" />
+            <Label Text="{Binding Note}" FontSize="Small"/>
+            <Label Text="Note IMDb :" FontSize="Medium" />
+            <Label Text="{Binding IMDbNote}" FontSize="Small"/>
+            <Label Text="Bande-Annonce :" FontSize="Medium" />
+            <Label Text="{Binding LienBandeAnnonce}" FontSize="Small"/>
+
+        </StackLayout>
+
+    </ScrollView>
+</ContentPage>

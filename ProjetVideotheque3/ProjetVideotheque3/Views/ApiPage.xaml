@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProjetVideotheque3.Views.ApiPage"
+             
+             
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true" BackgroundColor="Black">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Charger Infos" Command="{Binding LoadInfosFilmCommand}" />
+        <ToolbarItem Text="Annuler" Command="{Binding CancelCommand}" />
+        <ToolbarItem Text="Sauvegarder" Command="{Binding SaveCommand}" />
+    </ContentPage.ToolbarItems>
+
+
+    <ScrollView>
+        
+
+            <StackLayout Spacing="3" Padding="15" >
+
+            <Label Text="Complétez le champ Titre et cliquez sur Charger Infos..." />
+            <!--<Label Text="{Binding idToUpdate, Mode=TwoWay}"/>-->
+                <Label Text="Titre :" FontSize="Medium" />
+                <Entry Text="{Binding TitreAChercher, Mode=TwoWay}" FontSize="Medium" />
+                <Label Text="Synopsis :" FontSize="Medium" />
+                <Editor Text="{Binding Synopsis, Mode=TwoWay}" AutoSize="TextChanges" FontSize="Medium" Margin="0" />
+                <Label Text="Durée (min) :" FontSize="Medium" />
+            <Entry Text="{Binding DureeMins, Mode=TwoWay}" FontSize="Medium" />
+            <Label Text="Note IMDb :" />
+            <Entry  Text="{Binding IMDbNote, Mode=TwoWay}" IsReadOnly="True" />
+            <!--<Label Text="Date de sortie" FontSize="Medium" />
+                <DatePicker Date="{Binding DateSortie, Mode=TwoWay}" FontSize="Medium" MinimumDate="01/01/1920"/>-->
+
+
+                <!--<Label Text="Bande-Annonce :" FontSize="Medium" />
+                <Entry Placeholder="URL de la bande-annonce"  Text="{Binding LienBandeAnnonce, Mode=TwoWay}" FontSize="Medium" />-->
+                <Label Text="Affiche :" FontSize="Medium" />
+                <Entry Placeholder="URL de l'affiche du film"  Text="{Binding ImageUrl, Mode=TwoWay}" FontSize="Medium" />
+                <Image Grid.Column="0" Aspect="AspectFit" WidthRequest="200" Source="{Binding ImageUrl}" />
+
+                <!--<StackLayout Orientation="Horizontal">
+                <Button Text="Cancel" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>
+                <Button Text="Save" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>
+            </StackLayout>-->
+
+        </StackLayout>
+
+    </ScrollView>
+        
+       
+    
+    
+    
+</ContentPage>
+    
